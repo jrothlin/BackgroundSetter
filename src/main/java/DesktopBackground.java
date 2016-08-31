@@ -7,7 +7,7 @@ import com.sun.jna.win32.W32APITypeMapper;
 import java.util.HashMap;
 
 /**
- * Created by jrothlin on 8/29/2016.
+ * Created by Joe Rothlin on 8/29/2016.
  */
 public class DesktopBackground {
     public static void setBackground(final String fullImagePath) {
