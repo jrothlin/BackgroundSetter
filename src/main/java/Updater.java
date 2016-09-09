@@ -16,9 +16,9 @@ public class Updater {
 //        while (true) {
             try {
                 urlImage.fetchImage();
-                urlImage.scaleImage(.9, .9);
+                urlImage.scaleImage(1.25, 1.25);
                 urlImage.saveImage(IMAGE_FILE_LOCATION);
-//                DesktopBackground.setBackground(IMAGE_FILE_LOCATION);
+                DesktopBackground.setBackground(IMAGE_FILE_LOCATION);
 //                Thread.sleep(MINS_BETWEEN_UPDATE * MILLIS_IN_ONE_MINUTE);
             } catch (final Exception e) {
                 LOGGER.log(Level.SEVERE, "Found exception", e);

@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +24,15 @@ public class URLImage {
         this.image = ImageIO.read(url.openStream());
     }
 
-    public void scaleImage(final double width, final double height) {
-        BufferedImage resized = new BufferedImage((int) (width * 704), (int) (height * 480), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = resized.createGraphics();
-        AffineTransform at = AffineTransform.getScaleInstance(width, height);
-        g.drawRenderedImage(image, at);
-//        image = resized;
-//        image = image.getScaledInstance(width, height, 0);
+    public void scaleImage(final double widthScale, final double heightScale) {
+        int w = image.getWidth();
+        int h = image.getHeight();
+        BufferedImage after = new BufferedImage((int) (w * widthScale), (int) (h * heightScale), BufferedImage.TYPE_INT_ARGB);
+        AffineTransform at = new AffineTransform();
+        at.scale(widthScale, heightScale);
+        AffineTransformOp scaleOp =
+                new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        image = scaleOp.filter(image, after);
     }
 
     public void saveImage(final String location) throws IOException {
