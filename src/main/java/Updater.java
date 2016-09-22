@@ -13,16 +13,16 @@ public class Updater {
 
     public static void main(String[] args) {
         URLImage urlImage = new URLImage(IMAGE_URL_STRING);
-//        while (true) {
+        while (true) {
             try {
                 urlImage.fetchImage();
                 urlImage.scaleImage(1.25, 1.25);
                 urlImage.saveImage(IMAGE_FILE_LOCATION);
                 DesktopBackground.setBackground(IMAGE_FILE_LOCATION);
-//                Thread.sleep(MINS_BETWEEN_UPDATE * MILLIS_IN_ONE_MINUTE);
+                Thread.sleep(MINS_BETWEEN_UPDATE * MILLIS_IN_ONE_MINUTE);
             } catch (final Exception e) {
                 LOGGER.log(Level.SEVERE, "Found exception", e);
             }
-//        }
+        }
     }
 }
